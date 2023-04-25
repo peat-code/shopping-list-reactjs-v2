@@ -8,14 +8,18 @@ import ListContext from '../context/ListContext'
 
 function ListItem({item}) {
     const [number,setNumber] = useState(item.qty)
-    const {deleteItem,renameItem} = useContext(ListContext)
+    const {deleteItem,renameItem,updateItem} = useContext(ListContext)
     const addClick = () =>{
         setNumber(number+1)
+        item.qty = number
+        updateItem(item.id,item)
     }
     const subClick = () =>{
         if(number === 0 ){ deleteItem(item.id)
             return}
         setNumber(number-1)
+        item.qty = number
+        updateItem(item.id,item)
     }
 
   return (

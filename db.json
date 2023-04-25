@@ -1,0 +1,19 @@
+{
+  "items": [
+    {
+      "name": "Orange",
+      "qty": 2,
+      "id": 1
+    },
+    {
+      "name": "Apple",
+      "qty": 2,
+      "id": 2
+    },
+    {
+      "name": "Mangoes",
+      "qty": 2,
+      "id": 4
+    }
+  ]
+}

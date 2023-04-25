@@ -1,12 +1,25 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import Button from './shared/Button'
-
-function InputForm({handleAdd}) {
-
+import {useContext} from 'react'
+import ListContext from '../context/ListContext'
+import ListItem from './ListItem'
+function InputForm() {
+    
     const [text, setText] = useState('')
     const [btnDisabled, setBtnDisabled] = useState(true)
     const [message, setMessage] = useState('')
+    const {addItem,listEdit,updateItem} = useContext(ListContext)
+    const [qty,setQty] = useState(1)
+    useEffect(()=>{
+        //console.log("Use Effect Check.")
+        if(listEdit.edit === true){
+            setBtnDisabled(false)
+            setText(listEdit.item.name)
+            setQty(listEdit.item.qty)
+        }
+    }, [listEdit])
+
     const handleTextChange = (e) => {
         setText(e.target.value)
         if (text === '') {
@@ -28,10 +41,13 @@ function InputForm({handleAdd}) {
         if(text.trim().length >3){
             const newItem ={
                 name : text,
-                qty : 1
+                qty : qty
             }
-            handleAdd(newItem)
-            setText('')
+            if(listEdit.edit === true)
+                updateItem(listEdit.item.id, newItem)
+            else {
+                addItem(newItem)
+            }setText('')
         }
 
     }

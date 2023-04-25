@@ -1,8 +1,12 @@
 import React from 'react'
 import ListItem from "./ListItem"
+import {useContext} from 'react'
 import {motion,AnimatePresence} from 'framer-motion'
 import PropTypes from 'prop-types'
-function ShoppingList({listData,handleDeleteApp}) {
+import ListContext from '../context/ListContext'
+
+function ShoppingList() {
+    const {listData} = useContext(ListContext)
     if(!listData || listData.length===0) 
         return <p >Add Items to shopping List</p>
   return (
@@ -16,22 +20,12 @@ function ShoppingList({listData,handleDeleteApp}) {
         animate={{opacity:1}}
         exit={{opacity:0}}
     >
-        <ListItem key={item.id} item={item} handleDelete={(id)=>handleDeleteApp(id)}/>
+        <ListItem key={item.id} item={item} />
        </motion.div>) )}
    
     </AnimatePresence>
     </div>
   )
-}
-
-ShoppingList.propTypes= {
-    listData:PropTypes.arrayOf(
-        PropTypes.shape({
-            id:PropTypes.number.isRequired,
-            name:PropTypes.string.isRequired,
-            qty:PropTypes.number.isRequired,
-        })
-    )
 }
 
 

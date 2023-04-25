@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types'
 
-function Header({day}) {
+function Header() {
   return (
     <header  >
         <div className="container">
-            <h1>Shopping List {day && 'for'} {day}</h1>
+            <h1>Shopping List </h1>
         </div>
 
 
@@ -13,13 +13,6 @@ function Header({day}) {
   )
 }
 
-Header.defaultProps = {
-    day: 'Today',
-}
 
-
-Header.propTypes = {
-    day: PropTypes.string
-}
 
 export default Header
